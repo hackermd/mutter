@@ -1,0 +1,112 @@
+set my_cfgdir = "$HOME/.mutt"
+
+set alias_file = "$my_cfgdir/aliases"
+source `FILE=$alias_file; if [ ! -s "$FILE" ]; then FILE=/dev/null;fi;echo "$FILE"`
+
+source `FILE=$my_cfgdir/hooks; if [ ! -s "$FILE" ]; then FILE=/dev/null;fi;echo "$FILE"`
+source `FILE=$my_cfgdir/macros; if [ ! -s "$FILE" ]; then FILE=/dev/null;fi;echo "$FILE"`
+source `FILE=$my_cfgdir/groups; if [ ! -s "$FILE" ]; then FILE=/dev/null;fi;echo "$FILE"`
+
+# Specify header content of messages.
+set realname = 'Markus D. Herrmann'
+set use_from = yes
+set hidden_host = yes
+set user_agent = no
+
+# Use Maildir format (for compatibility with offlineimap).
+# set mbox_type = Maildir
+
+# Check for new emails regularly and use all available mailboxes.
+set imap_check_subscribed
+
+# Keep IMAP connection alive by polling intermittently (time in seconds).
+set imap_keepalive = 300
+
+# Allow opening a new IMAP connection automatically.
+unset imap_passive
+
+# How often to check for mail (time in seconds).
+set mail_check = 10
+set mail_check_stats = yes
+set mail_check_stats_interval = 60
+
+# Cache massages locally to speed things up
+set header_cache = "~/.cache/mutt/headers"
+set message_cachedir = "~/.cache/mutt/bodies"
+
+# Sorting
+set sort = 'reverse-threads'
+set sort_aux = 'last-date-received'
+
+# Use TLS
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+# Visual appearance
+set sidebar_visible = no
+set sidebar_format = "%B %?N?(%N)?%* %?F?%F/?%S"
+color sidebar_new green default
+set status_format = "%f [%r] [All:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"
+
+color index green default "~N"              # is new
+color index green default "~O"              # is old
+color index red default "~F"                # is flagged
+color index brightwhite default "~X 1-"     # has attachement
+
+# Sort aliases
+set sort_alias = alias
+set reverse_alias = yes
+
+# Stop at the end of message content
+set pager_stop = yes
+
+# Ensure order of header fields.
+hdr_order From Date: From: To: Cc: Subject:
+
+# Set vim as editor (with spell checking)
+set editor="vim -c 'set spell spelllang=en,de'"
+
+# Create vim-like key bindings.
+bind generic             z          noop
+bind index,pager,attach  g          noop
+bind index,pager         d          noop
+bind index,pager         s          noop
+bind index,pager         c          noop
+
+bind generic,index,pager \Cf        next-page
+bind generic,index,pager \Cb        previous-page
+bind generic,index       gg         first-entry
+bind generic,index       G          last-entry
+bind pager               gg         top
+bind pager               G          bottom
+bind generic,pager       \Cy        previous-line
+bind generic,index,pager \Ce        next-line
+bind generic,index,pager \Cd        half-down
+bind generic,index,pager \Cu        half-up
+bind index               <tab>      collapse-thread
+bind index,pager         N          search-opposite
+bind index,pager         J          next-unread
+bind index,pager         K          previous-unread
+
+bind index,pager         r          reply
+bind index,pager         x          group-reply
+
+macro index,pager        dd         "<delete-message><sync-mailbox>" "move message to trash"
+macro index,pager        dat        "<delete-thread><sync-mailbox>" "move thread to trash"
+
+# Enable toggling of sidebar.
+macro index,pager        <space>t   "<sidebar-toggle-visible>" "toggle sidebar"
+
+# Change mailbox directory when switching accounts.
+macro index              c          "<change-folder>?<change-dir><home>^K=<enter>" "change mailbox"
+
+# Load passwords from encrypted file.
+source "gpg -dq $HOME/.pass.gpg |"
+
+# Load default account
+source "$my_cfgdir/accounts/work"
+
+folder-hook uzh.ch "source $my_cfgdir/accounts/work"
+macro index <f2> '<sync-mailbox><enter-command>source $my_cfgdir/accounts/work<enter><change-folder>!<enter>'
+folder-hook gmail.com "source $my_cfgdir/accounts/gmail"
+macro index <f3> '<sync-mailbox><enter-command>source $my_cfgdir/accounts/gmail<enter><change-folder>!<enter>'
