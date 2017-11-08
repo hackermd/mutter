@@ -39,9 +39,27 @@ mv pass.gpg $HOME/.pass.gpg
 
 ## Email accounts
 
-The `muttrc` file configures two accounts: `outlook` and `gmail`.
+Configure accounts in `./accounts/config`.
 
-### GMAIL account template
+When working with multiple accounts, place separate configuration files into `./accounts`.
+Below, there are two example configurations for *Gmail* and *Outlook*.
+
+To switch between accounts conveniently, add the following configuration to `./accounts/config`:
+
+```bash
+# Load passwords from encrypted file.
+source "gpg -dq $HOME/.pass.gpg |"
+
+# Load "outlook" as default account
+source "$my_cfgdir/accounts/outlook"
+
+folder-hook outlook.office365.com "source $my_cfgdir/accounts/outlook"
+macro index <f2> '<sync-mailbox><enter-command>source $my_cfgdir/accounts/outlook<enter><change-folder>!<enter>'
+folder-hook gmail.com "source $my_cfgdir/accounts/gmail"
+macro index <f3> '<sync-mailbox><enter-command>source $my_cfgdir/accounts/gmail<enter><change-folder>!<enter>'
+```
+
+### Gmail account template
 
 Template for file `./accounts/gmail`:
 
