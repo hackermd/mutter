@@ -7,6 +7,9 @@ source `FILE=$my_cfgdir/hooks; if [ ! -s "$FILE" ]; then FILE=/dev/null;fi;echo 
 source `FILE=$my_cfgdir/macros; if [ ! -s "$FILE" ]; then FILE=/dev/null;fi;echo "$FILE"`
 source `FILE=$my_cfgdir/groups; if [ ! -s "$FILE" ]; then FILE=/dev/null;fi;echo "$FILE"`
 
+# Custom handling of MIME content types
+set mailcap_path = "$my_cfgdir/mailcap"
+
 # Specify header content of messages.
 set realname = 'Markus D. Herrmann'
 set use_from = yes
