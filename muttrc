@@ -30,8 +30,8 @@ unset imap_passive
 
 # How often to check for mail (time in seconds).
 set mail_check = 10
-set mail_check_stats = yes
-set mail_check_stats_interval = 60
+# set mail_check_stats = yes
+# set mail_check_stats_interval = 60
 
 # Cache massages locally to speed things up
 set header_cache = "~/.cache/mutt/headers"
@@ -47,7 +47,7 @@ set ssl_force_tls = yes
 
 # Visual appearance
 set sidebar_visible = no
-set sidebar_format = "%B %?N?(%N)?%* %?F?%F/?%S"
+# set sidebar_format = "%B %?N?(%N)?%* %?F?%F/?%S"
 color sidebar_new green default
 set status_format = "%f [%r] [All:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"
 
