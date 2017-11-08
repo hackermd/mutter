@@ -104,9 +104,9 @@ macro index              c          "<change-folder>?<change-dir><home>^K=<enter
 source "gpg -dq $HOME/.pass.gpg |"
 
 # Load default account
-source "$my_cfgdir/accounts/work"
+source "$my_cfgdir/accounts/outlook"
 
-folder-hook uzh.ch "source $my_cfgdir/accounts/work"
-macro index <f2> '<sync-mailbox><enter-command>source $my_cfgdir/accounts/work<enter><change-folder>!<enter>'
+folder-hook outlook.office365.com "source $my_cfgdir/accounts/outlook"
+macro index <f2> '<sync-mailbox><enter-command>source $my_cfgdir/accounts/outlook<enter><change-folder>!<enter>'
 folder-hook gmail.com "source $my_cfgdir/accounts/gmail"
 macro index <f3> '<sync-mailbox><enter-command>source $my_cfgdir/accounts/gmail<enter><change-folder>!<enter>'
