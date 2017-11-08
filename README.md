@@ -7,7 +7,7 @@ Mutt email client configuration
 Passwords are encrypted using [GnuPG](https://gnupg.org/).
 
 The example below demonstrates how to generate a file that contains the password for the GMAIL account.
-Replace `<password>` and `<identity>` with your password and the name associated with your public key that should be used to encrypt the file, respectively.
+Replace `<password>` and `<identity>` with your password and the name associated with your public key that should be used to encrypt the file, respectively. Note: Custom Mutt variables must follow the pattern `my_*`.
 
 ```None
 cd /tmp
