@@ -27,11 +27,11 @@ text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; name
 Passwords are encrypted using [GnuPG](https://gnupg.org/).
 
 The example below demonstrates how to generate a file that contains the password for the GMAIL account.
-Replace `<password>` and `<identity>` with your password and the name associated with your public key that should be used to encrypt the file, respectively.
+Replace `<password>` and `<identity>` with your password and the name associated with your public key that should be used to encrypt the file, respectively. Note: Custom Mutt variables must follow the pattern `my_*`.
 
 ```None
 cd /tmp
-echo "set my_gmail_pass = '<gmail_password>'" > pass
+echo "set my_pass = '<password>'" > pass
 gpg --recipient '<identity>' --encrypt pass
 rm pass
 mv pass.gpg $HOME/.pass.gpg
