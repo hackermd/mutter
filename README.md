@@ -11,7 +11,7 @@ Replace `<password>` and `<identity>` with your password and the name associated
 
 ```None
 cd /tmp
-echo "set my_gmail_pass = '<gmail_password>'" > pass
+echo "set my_pass = '<password>'" > pass
 gpg --recipient '<identity>' --encrypt pass
 rm pass
 mv pass.gpg $HOME/.pass.gpg
