@@ -66,6 +66,9 @@ hdr_order From Date: From: To: Cc: Subject:
 # Set vim as editor (with spell checking)
 set editor="vim -c 'set spell spelllang=en,de'"
 
+# Prevent line breaks
+set text_flowed = yes
+
 # Create vim-like key bindings.
 bind generic             z          noop
 bind index,pager,attach  g          noop
