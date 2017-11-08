@@ -14,14 +14,6 @@ Mutt email client configuration
 git clone https://github.com/hackermd/mutter ~/.mutt
 ```
 
-## Configuration
-
-Add the following to your `~/.mailcap` file (see [MIME content types](https://en.wikipedia.org/wiki/Media_type)):
-
-```None
-text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; nametemplate=%s.html; copiousoutput
-```
-
 ## Encrypted password file
 
 Passwords are encrypted using [GnuPG](https://gnupg.org/).
