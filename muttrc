@@ -9,6 +9,7 @@ source `FILE=$my_cfgdir/groups; if [ ! -s "$FILE" ]; then FILE=/dev/null;fi;echo
 
 # Custom handling of MIME content types
 set mailcap_path = "$my_cfgdir/mailcap"
+auto_view text/html
 
 # Specify header content of messages.
 set realname = 'Markus D. Herrmann'
