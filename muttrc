@@ -100,13 +100,4 @@ macro index,pager        <space>t   "<sidebar-toggle-visible>" "toggle sidebar"
 # Change mailbox directory when switching accounts.
 macro index              c          "<change-folder>?<change-dir><home>^K=<enter>" "change mailbox"
 
-# Load passwords from encrypted file.
-source "gpg -dq $HOME/.pass.gpg |"
-
-# Load default account
-source "$my_cfgdir/accounts/work"
-
-folder-hook uzh.ch "source $my_cfgdir/accounts/work"
-macro index <f2> '<sync-mailbox><enter-command>source $my_cfgdir/accounts/work<enter><change-folder>!<enter>'
-folder-hook gmail.com "source $my_cfgdir/accounts/gmail"
-macro index <f3> '<sync-mailbox><enter-command>source $my_cfgdir/accounts/gmail<enter><change-folder>!<enter>'
+source "$my_cfgdir/accounts/config"
